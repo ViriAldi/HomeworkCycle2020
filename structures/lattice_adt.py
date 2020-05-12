@@ -50,13 +50,47 @@ class Lattice:
     def num_cols(self):
         return self._elem.num_cols()
 
+    def _attribute_2d(self, attribute):
+        ans = np.zeros((self.num_rows(), self.num_cols()))
+
+        for row in range(self.num_rows()):
+            for col in range(self.num_cols()):
+                ans[row][col] = attribute(self[row, col])
+
+        return ans
+
+    @property
+    def x_2d(self):
+        return self._attribute_2d(Node.get_x)
+
+    @property
+    def y_2d(self):
+        return self._attribute_2d(Node.get_y)
+
+    @property
+    def z_2d(self):
+        return self._attribute_2d(Node.get_z)
+
+    # def path(self, point1, point2):
+    #     first = self[point1[0], point1[1]]
+    #     first = self[point1[0], point1[1]]
+
 
 class Node:
     def __init__(self, x: int, y: int,
                  value: object, coefficient: int = 1,
                  directions: [list, tuple] = (None, None, None, None)):
 
-        self.x = x * coefficient
-        self.y = y * coefficient
-        self.value = value
+        self._x = x * coefficient
+        self._y = y * coefficient
+        self._value = value
         self.n, self.e, self.s, self.w = directions
+
+    def get_x(self):
+        return self._x
+
+    def get_y(self):
+        return self._y
+
+    def get_z(self):
+        return self._value
