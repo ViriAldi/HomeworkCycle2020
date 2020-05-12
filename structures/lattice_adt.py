@@ -3,8 +3,10 @@ import numpy as np
 
 
 class Lattice:
-    def __init__(self, step: tuple, array2d: np.ndarray):
+    def __init__(self, step: tuple, array2d: np.ndarray, corner: tuple, step_sec: [float, int] = 3):
         self.step = step
+        self.corner = corner
+        self.sec = step_sec
         self._elem = Array2D(*array2d.shape)
         self._construct(array2d)
         self._bind()
@@ -12,10 +14,13 @@ class Lattice:
     def _construct(self, array2d):
         for row in range(self.num_rows()):
             for col in range(self.num_cols()):
+                coords = (self.corner[0] - row * self.sec,
+                          self.corner[1] + col * self.sec)
 
                 self._elem[row, col] = Node(x=row, y=col,
                                             value=array2d[row, col],
-                                            coefficient=self.step)
+                                            coefficient=self.step,
+                                            geo_coord=coords)
 
     def _bind(self):
         for row in range(self.num_rows()):
@@ -77,14 +82,15 @@ class Lattice:
 
 
 class Node:
-    def __init__(self, x: int, y: int,
-                 value: object, coefficient: tuple = (1, 1),
+    def __init__(self, x: int, y: int, value: object,
+                 geo_coord: tuple = (None, None), coefficient: tuple = (1, 1),
                  directions: [list, tuple] = (None, None, None, None)):
 
         self._x = x * coefficient[0]
         self._y = y * coefficient[1]
         self._value = value
         self.n, self.e, self.s, self.w = directions
+        self.lat, self.lon = geo_coord
 
     def get_x(self):
         return self._x
