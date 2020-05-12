@@ -3,7 +3,7 @@ import numpy as np
 
 
 class Lattice:
-    def __init__(self, step: int, array2d: np.ndarray):
+    def __init__(self, step: tuple, array2d: np.ndarray):
         self.step = step
         self._elem = Array2D(*array2d.shape)
         self._construct(array2d)
@@ -78,11 +78,11 @@ class Lattice:
 
 class Node:
     def __init__(self, x: int, y: int,
-                 value: object, coefficient: int = 1,
+                 value: object, coefficient: tuple = (1, 1),
                  directions: [list, tuple] = (None, None, None, None)):
 
-        self._x = x * coefficient
-        self._y = y * coefficient
+        self._x = x * coefficient[0]
+        self._y = y * coefficient[1]
         self._value = value
         self.n, self.e, self.s, self.w = directions
 
