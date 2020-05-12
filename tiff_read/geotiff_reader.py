@@ -15,11 +15,11 @@ class GeoTiffReader:
         self.k = k
 
     def make_lattice(self, center, size):
-        x_center = (center[1] - self.corner[1]) // self.x_scale()
-        y_center = (-center[0] + self.corner[0]) // self.y_scale()
+        x_center = int((center[1] - self.corner[1]) * 3600 / self.step_sec)
+        y_center = int((-center[0] + self.corner[0]) * 3600 / self.step_sec)
 
-        arr = self.np_array[x_center - size // self.x_scale():x_center + size // self.x_scale(),
-                            y_center - size // self.y_scale():y_center + size // self.y_scale()
+        arr = self.np_array[y_center - int(size // self.y_scale()):y_center + int(size // self.y_scale()),
+                            x_center - int(size // self.x_scale()):x_center + int(size // self.x_scale()),
                             ]
 
         return Lattice(step=(self.x_scale(), self.y_scale()),
