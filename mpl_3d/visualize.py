@@ -1,10 +1,12 @@
 from tiff_read.geotiff_reader import GeoTiffReader
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 from mpl_toolkits import mplot3d
 
-if __name__ == "__main__":
-    reader = GeoTiffReader(path="../geofiles/swizerland.tif", geo_corner=(50, 5))
+
+def save_vis(path, geo_corner):
+    reader = GeoTiffReader(path, geo_corner)
 
     lattice = reader.make_lattice((45.976607, 7.658548), 10000)
     x, y, z = lattice.x_2d, lattice.y_2d, lattice.z_2d
@@ -27,4 +29,6 @@ if __name__ == "__main__":
 
     ax.plot_surface(x, y, z, linewidth=0, antialiased=False, color="white", alpha=0.3)
     ax.plot(x_p, y_p, z_p, color="red")
-    plt.show()
+    name = hex(random.randint(10**10))[2:]
+    plt.savefig(name, dpi=300)
+    return name
