@@ -1,5 +1,6 @@
 from structures.linked_array_data_structure import *
 import numpy as np
+import heapq
 
 
 class Lattice:
@@ -74,30 +75,35 @@ class Lattice:
 
     @property
     def z_2d(self):
-        return self._attribute_2d(Node.get_z)
+        return 2 * self._attribute_2d(Node.get_z)
 
     def path(self, point1, point2):
         first = self[point1[0], point1[1]]
         last = self[point2[0], point2[1]]
 
-        dist = {self[i, j]: 10**9 for i in range(self.num_rows()) for j in range(self.num_cols())}
+        dist = {self[i, j]: 10 ** 9 for i in range(self.num_rows()) for j in range(self.num_cols())}
         parent = {}
         dist[first] = 0
 
-        unmarked = set(self[i, j] for i in range(self.num_rows()) for j in range(self.num_cols()))
-        while unmarked:
-            node = min(unmarked, key=lambda x: dist[x])
+        li = [Pair(dist[x], x) for x in dist]
+        heapq.heapify(li)
+        while li:
+            node = heapq.heappop(li)
+            if node.a != dist[node.b]:
+                continue
+
+            node = node.b
+            if node == last:
+                break
 
             for node_ in [node.n, node.e, node.s, node.w]:
                 if node_:
                     dst = node.distance(node_)
-                    dist[node_] = min(dist[node] + dst, dist[node_])
 
-                    if dist[node_] == dist[node] + dst:
+                    if dist[node_] > dist[node] + dst:
                         parent[node_] = node
-
-                    unmarked.discard(node)
-                    print(len(unmarked))
+                        dist[node_] = dist[node] + dst
+                        heapq.heappush(li, Pair(dist[node_], node_))
 
         path = []
         node = last
@@ -137,3 +143,15 @@ class Node:
         x2, y2, z2 = node.get_x(), node.get_y(), node.get_z()
 
         return ((x1 - x2)**2 + (y1 - y2)**2 + (z1 - z2)**2)**0.5
+
+
+class Pair:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def __lt__(self, other):
+        return self.a < other.a
+
+    def __gt__(self, other):
+        return self.a > other.a
