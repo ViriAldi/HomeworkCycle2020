@@ -5,8 +5,8 @@ import random
 from mpl_toolkits import mplot3d
 
 
-def save_vis(path, geo_corner):
-    reader = GeoTiffReader(path, geo_corner)
+def save_vis(geo_corner):
+    reader = GeoTiffReader("../geofiles/swizerland.tif", geo_corner)
 
     lattice = reader.make_lattice((45.976607, 7.658548), 10000)
     x, y, z = lattice.x_2d, lattice.y_2d, lattice.z_2d
@@ -29,6 +29,6 @@ def save_vis(path, geo_corner):
 
     ax.plot_surface(x, y, z, linewidth=0, antialiased=False, color="white", alpha=0.3)
     ax.plot(x_p, y_p, z_p, color="red")
-    name = hex(random.randint(10**10))[2:]
+    name = hex(random.randint(10**5, 10**10))[2:]
     plt.savefig(name, dpi=300)
     return name

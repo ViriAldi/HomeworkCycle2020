@@ -1,16 +1,12 @@
-from flask import Flask, render_template
-from mpl_3d.visualize import save_vis
+from flask import Flask, render_template, url_for
 
 
-app = Flask("application")
+app = Flask(__name__)
 
 
 @app.route("/")
 def main():
-    vis = save_vis("..geofiles/swizerland.tiff", geo_corner=(50, 5))
-    return render_template("index.html", value=vis)
+    return render_template("index.html")
 
 
-if __name__ == "__main__":
-    app.run()
-
+app.run(debug=True)
