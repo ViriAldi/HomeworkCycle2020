@@ -75,7 +75,7 @@ class Lattice:
 
     @property
     def z_2d(self):
-        return 2 * self._attribute_2d(Node.get_z)
+        return self._attribute_2d(Node.get_z)
 
     def path(self, point1, point2):
         first = self[point1[0], point1[1]]
