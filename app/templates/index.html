@@ -10,66 +10,87 @@
         <script>
             Plotly.d3.csv('static/data_x.csv', function(err,rows) {
                 var data_x = [];
-                for(let i=0;i<rows.length;i++) {
+                for (let i = 0; i < rows.length; i++) {
                     data_x.push(rows.map(row => row [i]));
                 }
-                Plotly.d3.csv('static/data_y.csv', function(err,rows) {
+                Plotly.d3.csv('static/data_y.csv', function (err, rows) {
                     var data_y = [];
-                    for(let i=0;i<rows.length;i++) {
+                    for (let i = 0; i < rows.length; i++) {
                         data_y.push(rows.map(row => row [i]));
                     }
-                    Plotly.d3.csv('static/data_z.csv', function(err,rows) {
+                    Plotly.d3.csv('static/data_z.csv', function (err, rows) {
                         var data_z = [];
                         for (let i = 0; i < rows.length; i++) {
                             data_z.push(rows.map(row => row [i]));
                         }
-                        let min = 0;
-                        let max = 10e6;
-                        for (let i = 0; i < data_z.length; i++){
-                            for (let j = 0; j < data_z[i].length; j++){
-                                if (!(typeof data_z[i][j] === undefined)){
-                                    console.log(1);
-                                    min = Math.min(min, data_z[i][j]);
-                                    max = Math.max(max, data_z[i][j]);
+                        Plotly.d3.csv('static/data_path.csv', function (err, rows) {
+                            let x_path = [];
+                            let y_path = [];
+                            let z_path = [];
+
+                            console.log(rows.length);
+                            for (let i = 0; i < 400; i++){
+                                x_path.push(rows[0][i]);
+                                y_path.push(rows[1][i]);
+                                z_path.push(rows[2][i]);
+                            }
+
+                            let colorscale = [[0.0, "#000000"], [1.0, "#ffffff"]]
+
+                            let data = [{
+                                x: data_x,
+                                y: data_y,
+                                z: data_z,
+                                type: 'surface',
+                                colorscale: "Bluered",
+                            },
+                                {
+                                    x: x_path,
+                                    y: y_path,
+                                    z: z_path,
+                                    type: "scatter3d",
+                                    mode: "lines",
+                                    line: {
+                                        width: 8,
+                                        reversescale: false,
+                                    }
+                                }];
+
+                            let layout = {
+                                title: 'Landscape',
+                                autosize: false,
+                                width: 2000,
+                                height: 600,
+                                margin: {
+                                    l: 300,
+                                    r: 300,
+                                    b: 0,
+                                    t: 100,
+                                },
+                                scene: {
+                                    xaxis: {
+                                        showbackground: false,
+                                        nticks: 9,
+                                        range: [0, Math.max(...data_x[0])],
+                                    },
+                                    yaxis: {
+                                        nticks: 7,
+                                        range: [0, Math.max(...data_x[0])],
+                                    },
+                                    zaxis: {
+                                        nticks: 10,
+                                        range: [-1 / 3 * Math.max(...data_x[0]), 2 / 3 * Math.max(...data_x[0])],
+                                    }
                                 }
-                            }
-                        }
-                        console.log(min, max);
-                        for (let i = 0; i < data_z.length; i++) {
-                            data_z[i] = data_z[i].map(el => el - min + (max - min) / 5);
-                        }
+                            };
 
-                        let data = [{
-                            x: data_x,
-                            y: data_y,
-                            z: data_z,
-                            type: 'surface'
-                        }, {
-                            x: [Math.max(...data_x[0])],
-                            y: [Math.max(...data_x[0])],
-                            z: [Math.max(...data_x[0]) / 2],
-                            type: 'scatter3d',
-                            opacity: 0
-                            }
-                        ];
-
-                        // let layout = {
-                        //   title: 'Landscape',
-                        //   xaxis: {
-                        //     title: 'X',
-                        //     showgrid: false,
-                        //     zeroline: false
-                        //   },
-                        //   yaxis: {
-                        //     title: 'Y',
-                        //     showline: false
-                        //   }
-                        // };
-
-                        Plotly.plot('chart', data);
+                            Plotly.plot('chart', data, layout);
+                        })
                     })
                 })
             })
+
+            Plotly.plot("chart", [{z: data, type: "surface", surfacecolor: color, colorscale: colorscale}])
         </script>
     </div>
     </body>

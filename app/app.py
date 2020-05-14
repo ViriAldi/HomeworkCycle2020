@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    save_csv((50, 5), 2000)
+    save_csv((50, 5), 10000)
     return render_template("index.html")
 
 
