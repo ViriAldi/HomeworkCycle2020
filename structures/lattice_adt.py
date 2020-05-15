@@ -101,8 +101,6 @@ class Lattice:
         else:
             ans.append(None)
 
-        print(ans)
-
         return ans
 
     def path(self, point1, point2):
@@ -176,7 +174,7 @@ class Node:
         x1, y1, z1 = self.get_x(), self.get_y(), self.get_z()
         x2, y2, z2 = node.get_x(), node.get_y(), node.get_z()
 
-        return ((x1 - x2)**2 + (y1 - y2)**2 + 10000 * (z1**4 / 2000**4) * (z1 - z2)**2)**0.5
+        return ((x1 - x2)**2 + (y1 - y2)**2 + 1000 * ((z1 + 1000)**4 / 2000**4) * abs(z1 - z2)**2.05)**0.5
 
 
 class Pair:

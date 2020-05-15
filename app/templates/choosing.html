@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geo 3D Mapper</title>
+    <style>
+        @font-face {
+          font-family: myFirstFont;
+          src: url("static/Katrine.ttf");
+        }
+        body{
+            background-image: url("static/background.jpeg");
+            background-size: 100%;
+        }
+        div {
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+            padding-top: 0px;
+        }
+        button {
+            font-size: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<h1 align="center" style="font-size: 80px; font-family: myFirstFont; margin-top: 130px">
+    Welcome to the 3D GeoLandscaper</h1>
+<div>
+    {% if way == "route"%}
+    <form action="/making_path_coordinates">
+        <button style="margin-top: 50px; width: 300px; height: 50px; font-size: 30px">Use coordinates</button>
+    </form>
+    <form action="/making_path_geocoder">
+        <button style="margin-top: 50px; width: 300px; height: 50px; font-size: 30px">Use name</button>
+    </form>
+
+    {% elif way == "map" %}
+        <form action="/making_map_coordinates">
+        <button style="margin-top: 50px; width: 300px; height: 50px; font-size: 30px">Use coordinates</button>
+    </form>
+    <form action="/making_map_geocoder">
+        <button style="margin-top: 50px; width: 300px; height: 50px; font-size: 30px">Use name</button>
+    </form>
+
+    {% endif %}
+    <a href="/" style="margin-top: 100px; font-family: myFirstFont; text-decoration: none; color: black; font-size: 45px"><b>BACK</b></a>
+</div>
+</body>
+</html>
