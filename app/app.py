@@ -1,23 +1,23 @@
 from flask import Flask, render_template, request
 from mpl_3d.plotly_3d import to_javascript, make_path
-import time
+from geocoder.geocoder import locate
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def main():
-    return render_template("index1.html")
+    return render_template("index.html")
 
 
 @app.route("/making_map")
 def making_map():
-    return render_template("index.html")
+    return render_template("making_map_coordinates.html")
 
 
 @app.route("/making_path")
 def making_path():
-    return render_template("path.html")
+    return render_template("making_path_coordinates.html")
 
 
 @app.route("/map_route", methods=["POST"])
