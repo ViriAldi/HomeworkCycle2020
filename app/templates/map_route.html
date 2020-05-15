@@ -22,21 +22,39 @@
         <a href="/" style="display:block; text-align:center; font-size: 40px; color: black; font-family: myFirstFont; text-decoration: none"><b>BACK</b></a>
     </div>
     <script>
-        let data = ({{ time }})
+        let data_all = ({{ path_map }})
+        data = data_all[0];
+        path = data_all[1];
+
         let data_x = data[0];
         let data_y = data[1];
         let data_z = data[2];
+
+        let path_x = path[0];
+        let path_y = path[1];
+        let path_z = path[2];
+
 
         data = [{
                 x: data_x,
                 y: data_y,
                 z: data_z,
                 type: 'surface',
-                colorscale: ({{ colormap|tojson }}),
                 colorbar: {
                     x: 1
                 }
-        }];
+        },
+            {
+                x: path_x,
+                y: path_y,
+                z: path_z,
+                type: "scatter3d",
+                mode: "lines",
+                line: {
+                    width: 10,
+                    color: "black"
+                }
+            }];
 
         let layout = {
             autosize: false,

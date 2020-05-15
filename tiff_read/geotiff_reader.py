@@ -24,7 +24,7 @@ class GeoTiffReader:
 
         return Lattice(step=(self.x_scale(), self.y_scale()),
                        array2d=arr,
-                       corner=center)
+                       center=center)
 
     def x_scale(self):
         return (RADIUS * 2 * pi / (360 * 3600)) * self.step_sec
