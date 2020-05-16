@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from mpl_3d.plotly_3d import to_javascript, make_path
-from geocoder.geocoder import locate
+from geocoder.geocoder import locate, decode
 
 app = Flask(__name__)
 
@@ -53,8 +53,10 @@ def map_route():
     if abs(coord1[0] - coord2[0]) + abs(coord1[1] - coord2[1]) > 1:
         return f"too long: Point1({coord1}), Point2({coord2})"
 
-    path_map = make_path((50, 5), coord1, coord2)
-    return render_template("map_route.html", path_map=path_map)
+    colormap = request.form.get("color")
+
+    path_map = make_path(coord1, coord2)
+    return render_template("map_route.html", path_map=path_map, colormap=colormap)
 
 
 @app.route("/map", methods=["POST"])
@@ -74,8 +76,9 @@ def geo_map():
         return "Bad value"
 
     colormap = request.form.get("color")
+    print(decode(coord))
 
-    height_map = to_javascript((50, 5), coord, size * 1000)
+    height_map = to_javascript(coord, size * 1000)
     return render_template("map.html", time=height_map, colormap=colormap)
 
 

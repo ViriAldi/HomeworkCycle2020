@@ -4,7 +4,7 @@ import heapq
 
 
 class Lattice:
-    def __init__(self, step: tuple, array2d: np.ndarray, center: tuple, step_sec: [float, int] = 3):
+    def __init__(self, step: tuple, array2d: np.ndarray, center: tuple, step_sec: [float, int] = 1):
         self.step = step
         self.center = center
         self.sec = step_sec
@@ -141,8 +141,8 @@ class Lattice:
         return path
 
     def indexes(self, coords):
-        y = (self.center[0] - coords[0]) * 3600 / 3 + self.num_rows() / 2
-        x = (-self.center[1] + coords[1]) * 3600 / 3 + self.num_cols() / 2
+        y = (self.center[0] - coords[0]) * 3600 / self.sec + self.num_rows() / 2
+        x = (-self.center[1] + coords[1]) * 3600 / self.sec + self.num_cols() / 2
 
         return int(y), int(x)
 
