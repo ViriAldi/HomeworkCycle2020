@@ -50,8 +50,8 @@ def map_route():
         coord1 = (lat1, lon1)
         coord2 = (lat2, lon2)
 
-    if abs(coord1[0] - coord2[0]) + abs(coord1[1] - coord2[1]) > 1:
-        return f"too long: Point1({coord1}), Point2({coord2})"
+    # if abs(coord1[0] - coord2[0]) + abs(coord1[1] - coord2[1]) > 1:
+    #     return f"too long: Point1({coord1}), Point2({coord2})"
 
     colormap = request.form.get("color")
 
@@ -76,7 +76,6 @@ def geo_map():
         return "Bad value"
 
     colormap = request.form.get("color")
-    print(decode(coord))
 
     height_map = to_javascript(coord, size * 1000)
     return render_template("map.html", time=height_map, colormap=colormap)

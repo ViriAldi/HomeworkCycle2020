@@ -1,9 +1,9 @@
 from tiff_read.geotiff_reader import GeoTiffReader
-import pandas as pd
+from math import ceil
 
 
 def to_javascript(coordinates, size):
-    reader = GeoTiffReader(coordinates)
+    reader = GeoTiffReader(coordinates, k=ceil(size/8000))
 
     lattice = reader.make_lattice(coordinates, size=size)
     x, y, z = lattice.x_2d.tolist(), lattice.y_2d.tolist(), lattice.z_2d.tolist()
@@ -15,7 +15,7 @@ def make_path(point1, point2):
     coordinates = ((point1[0] + point2[0]) / 2, (point1[1] + point2[1]) / 2)
     size = max(0.75 * max(abs(point2[0] - point1[0]), abs(point2[1] - point1[1])) * 120, 5)
 
-    reader = GeoTiffReader(coord=coordinates)
+    reader = GeoTiffReader(coord=coordinates, k=ceil(size/4))
 
     lattice = reader.make_lattice(coordinates, size=size * 1000)
     x, y, z = lattice.x_2d.tolist(), lattice.y_2d.tolist(), lattice.z_2d.tolist()

@@ -4,10 +4,11 @@ import heapq
 
 
 class Lattice:
-    def __init__(self, step: tuple, array2d: np.ndarray, center: tuple, step_sec: [float, int] = 1):
+    def __init__(self, step: tuple, array2d: np.ndarray, corner: tuple, step_sec: [float, int] = 1, k: int = 1):
         self.step = step
-        self.center = center
+        self.corner = corner
         self.sec = step_sec
+        self.k = k
         self._elem = Array2D(*array2d.shape)
         self._construct(array2d)
         self._bind()
@@ -15,13 +16,10 @@ class Lattice:
     def _construct(self, array2d):
         for row in range(self.num_rows()):
             for col in range(self.num_cols()):
-                coords = (self.center[0] - (row - self.num_rows() / 2) * (self.sec / 3600),
-                          self.center[1] + (col - self.num_cols() / 2) * (self.sec / 3600))
 
                 self._elem[row, col] = Node(x=row, y=col,
                                             value=array2d[row, col],
-                                            coefficient=self.step,
-                                            geo_coord=coords)
+                                            coefficient=self.step)
 
     def _bind(self):
         for row in range(self.num_rows()):
@@ -141,22 +139,20 @@ class Lattice:
         return path
 
     def indexes(self, coords):
-        y = (self.center[0] - coords[0]) * 3600 / self.sec + self.num_rows() / 2
-        x = (-self.center[1] + coords[1]) * 3600 / self.sec + self.num_cols() / 2
+        y = (-coords[0] + self.corner[0]) * 3600 / (self.sec * self.k)
+        x = (coords[1] - self.corner[1]) * 3600 / (self.sec * self.k)
 
         return int(y), int(x)
 
 
 class Node:
-    def __init__(self, x: int, y: int, value: [float, int],
-                 geo_coord: tuple = (None, None), coefficient: tuple = (1, 1),
+    def __init__(self, x: int, y: int, value: [float, int], coefficient: tuple = (1, 1),
                  directions: [list, tuple] = (None, None, None, None)):
 
         self._x = x * coefficient[0]
         self._y = y * coefficient[1]
         self._value = value
         self.n, self.e, self.s, self.w = directions
-        self.lat, self.lon = geo_coord
 
     def get_x(self):
         return self._x
