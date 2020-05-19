@@ -9,16 +9,25 @@ It's an open source project built on Python and JavaScript that provides constuc
 
 ## Installation and Usage
 
-* Source Code
+* <b>Source Code</b>
 
 ```bash
 $ git clone https://github.com/ViriAldi/HomeworkCycle2020
 ```
 
-* DataBase
+* <b>DataBase</b>
 
 > [Elevation Dataset - ALOS Global Digital Surface Model](https://www.eorc.jaxa.jp/ALOS/en/aw3d30/data/index.htm)
 
+* <b>Installation</b>
+
+Hosted web site is just an example of program abilities (it works only in Swizerland, South Carpathians and North Kashmir)
+For your needs and locations you should clone this project and download geotiffs from database you need. Place them in geofiles directory, then you will have ability to run program much faster on your localhost or host it as your website.
+For running web aplication type this command in ./app:
+
+```
+$ flask run
+```
 
 ## Examples of work
 
