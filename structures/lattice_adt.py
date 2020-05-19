@@ -1,10 +1,22 @@
 from structures.linked_array_data_structure import *
 import numpy as np
 import heapq
+from structures.node import Node
 
 
 class Lattice:
+    """
+    Class that represents Lattice Data Structure
+    """
     def __init__(self, step: tuple, array2d: np.ndarray, corner: tuple, step_sec: [float, int] = 1, k: int = 1):
+        """
+        Initializes the lattice
+        :param step: x and y scaling (float, float)
+        :param array2d: Array2D
+        :param corner: Top left corner (lat, long)
+        :param step_sec: step between points in arc seconds
+        :param k: scaling for performance
+        """
         self.step = step
         self.corner = corner
         self.sec = step_sec
@@ -14,6 +26,11 @@ class Lattice:
         self._bind()
 
     def _construct(self, array2d):
+        """
+        Fills Lattice with Node objects
+        :param array2d: Array2D
+        :return:
+        """
         for row in range(self.num_rows()):
             for col in range(self.num_cols()):
 
@@ -22,6 +39,10 @@ class Lattice:
                                             coefficient=self.step)
 
     def _bind(self):
+        """
+        Binds nodes in Lattice (north, east, south, west)
+        :return:
+        """
         for row in range(self.num_rows()):
             for col in range(self.num_cols()):
                 curr_node = self[row, col]
@@ -43,18 +64,42 @@ class Lattice:
                     self[row, col-1].e = curr_node
 
     def __getitem__(self, item):
+        """
+        Returns the item by position
+        :param item: position (int, int)
+        :return: object
+        """
         return self._elem.__getitem__(item)
 
     def __setitem__(self, key, value):
+        """
+        Sets the value bu position
+        :param key: position (int, int)
+        :param value: object
+        :return:
+        """
         self._elem.__setitem__(key, value)
 
     def num_rows(self):
+        """
+        Returns the number of rows
+        :return: int
+        """
         return self._elem.num_rows()
 
     def num_cols(self):
+        """
+        Returns the number of columns
+        :return: int
+        """
         return self._elem.num_cols()
 
     def _attribute_2d(self, attribute):
+        """
+        Returns numpy 2d array with given attribute taken from lattice
+        :param attribute:
+        :return:
+        """
         ans = np.zeros((self.num_rows(), self.num_cols()))
 
         for row in range(self.num_rows()):
@@ -65,18 +110,35 @@ class Lattice:
 
     @property
     def x_2d(self):
+        """
+        X attribute subarray
+        :return: numpy.ndarray
+        """
         return self._attribute_2d(Node.get_x)
 
     @property
     def y_2d(self):
+        """
+        Y attribute subarray
+        :return: numpy.ndarray
+        """
         return self._attribute_2d(Node.get_y)
 
     @property
     def z_2d(self):
+        """
+        Z attribute subarray
+        :return: numpy.ndarray
+        """
         return self._attribute_2d(Node.get_z)
 
     @staticmethod
     def neighbours(node):
+        """
+        Computes all diagonal neighbours of the node
+        :param node: Node
+        :return: list
+        """
         ans = []
 
         if node.n and node.e:
@@ -101,16 +163,30 @@ class Lattice:
 
         return ans
 
-    def path(self, point1, point2):
+    def path(self, point1, point2, kernel=Node.distance):
+        """
+        Finds the shortest path between two points of Lattice
+        For distance measurement uses kernel function of two nodes
+        By default it is distance function that penalizes height
+        Uses Dejkstra Algorithm with priority queue. Complexity O(mlogn)
+        :param point1: Node
+        :param point2: Node
+        :param kernel: function(Node, Node)
+        :return: list of nodes
+        """
         first = self[point1[0], point1[1]]
         last = self[point2[0], point2[1]]
 
-        dist = {self[i, j]: 10 ** 9 for i in range(self.num_rows()) for j in range(self.num_cols())}
+        dist = {self[i, j]: 10 ** 9
+                for i in range(self.num_rows())
+                for j in range(self.num_cols())}
+
         parent = {}
         dist[first] = 0
 
-        li = [Pair(dist[x], x) for x in dist]
+        li = [_Pair(dist[x], x) for x in dist]
         heapq.heapify(li)
+
         while li:
             node = heapq.heappop(li)
             if node.a != dist[node.b]:
@@ -122,12 +198,12 @@ class Lattice:
 
             for node_ in [node.n, node.e, node.s, node.w] + self.neighbours(node):
                 if node_:
-                    dst = node.distance(node_)
+                    dst = kernel(node, node_)
 
                     if dist[node_] > dist[node] + dst:
                         parent[node_] = node
                         dist[node_] = dist[node] + dst
-                        heapq.heappush(li, Pair(dist[node_], node_))
+                        heapq.heappush(li, _Pair(dist[node_], node_))
 
         path = []
         node = last
@@ -139,47 +215,44 @@ class Lattice:
         return path
 
     def indexes(self, coords):
-        y = (-coords[0] + self.corner[0]) * 3600 / (self.sec * self.k)
-        x = (coords[1] - self.corner[1]) * 3600 / (self.sec * self.k)
+        """
+        Return position of point on lattice by coordinates
+        :param coords: (lat, long)
+        :return: position (int, int)
+        """
+        y = (-coords[0] + self.corner[0]) * 3600 \
+            / (self.sec * self.k)
+        x = (coords[1] - self.corner[1]) * 3600 \
+            / (self.sec * self.k)
 
         return int(y), int(x)
 
 
-class Node:
-    def __init__(self, x: int, y: int, value: [float, int], coefficient: tuple = (1, 1),
-                 directions: [list, tuple] = (None, None, None, None)):
-
-        self._x = x * coefficient[0]
-        self._y = y * coefficient[1]
-        self._value = value
-        self.n, self.e, self.s, self.w = directions
-
-    def get_x(self):
-        return self._x
-
-    def get_y(self):
-        return self._y
-
-    def get_z(self):
-        return self._value
-
-    def __hash__(self):
-        return int(self._x ** 3 + self._y ** 3)
-
-    def distance(self, node):
-        x1, y1, z1 = self.get_x(), self.get_y(), self.get_z()
-        x2, y2, z2 = node.get_x(), node.get_y(), node.get_z()
-
-        return ((x1 - x2)**2 + (y1 - y2)**2 + 1000 * ((z1 + 1000)**4 / 2000**4) * abs(z1 - z2)**2.05)**0.5
-
-
-class Pair:
+class _Pair:
+    """
+    Class of C++ pair representation
+    """
     def __init__(self, a, b):
+        """
+        Initializes a pair with values a and b
+        :param a:
+        :param b:
+        """
         self.a = a
         self.b = b
 
     def __lt__(self, other):
+        """
+        Compares two pairs by first element
+        :param other:
+        :return:
+        """
         return self.a < other.a
 
     def __gt__(self, other):
+        """
+        Compares twp pairs by first element
+        :param other:
+        :return:
+        """
         return self.a > other.a
