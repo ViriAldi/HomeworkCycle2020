@@ -227,6 +227,10 @@ function PlotPath(path){
 
 Volodymyr Fedynyak aka ViriAldi
 
-> [Facebook ViriAldi](https://www.facebook.com/ViriAldi)
+> [Facebook Volodymyr Fedynyak](https://www.facebook.com/ViriAldi)
+
 > [Instagram ViriAldi](https://www.instagram.com/viri_aldi)
-> [LinkedIn ViriAldi](https://www.linkedin.com/in/volodymyr-fedynyak-1717b919a/)
+
+> [LinkedIn Volodymyr Fedynyak](https://www.linkedin.com/in/volodymyr-fedynyak-1717b919a/)
+
+> [Tweeter ViriAldi](https://twitter.com/aldi_viri)
