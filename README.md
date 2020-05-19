@@ -23,27 +23,27 @@ $ git clone https://github.com/ViriAldi/HomeworkCycle2020
 
 * ### Plotting the K2 mountain landscape (Karakoram, Pakistan)
 
-![k2](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/Screenshot%20from%202020-05-19%2020-29-34.png)
+![k2](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/k2.png)
 
 * ### Plotting the Masherbrum mountain landscape (Karakoram, Pakistan)
 
-![masherbrum](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/Screenshot%20from%202020-05-19%2020-30-52.png)
+![masherbrum](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/masherbrum.png)
 
 * ### Plotting the optimal path between Murren and mountain JungFrau (Alps, Swizerland)
 
-![jungfrau](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/Screenshot%20from%202020-05-19%2020-33-17.png)
+![jungfrau](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/murren-jungfrau.png)
 
 * ### Plotting the Annapurna I mountain landscape with high detalisation (Himalayas, Nepal)
 
-![annapurna](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/Screenshot%20from%202020-05-19%2020-37-21.png)
+![annapurna](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/annapurna.png)
 
 * ### Plotting the optimal path between Pokhara and Annapurna I (Himalayas, Nepal)
 
-![pokhara](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/Screenshot%20from%202020-05-19%2020-40-46.png)
+![pokhara](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/annapurna-pokhara.png)
 
 * ### Plotting the optimal road between Rakhiv and Yaremche (Carpathians, Ukraine)
 
-![ukraine](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/Screenshot%20from%202020-05-19%2020-42-53.png)
+![ukraine](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/rakhiv-yaremche.png)
 
 
 # Input and Output data
