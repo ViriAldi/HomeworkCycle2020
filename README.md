@@ -77,10 +77,6 @@ This is the directory with app implementation. There are:
 * <b>tempaltes</b> - directory with html templates for web site
 
 * <b>static</b> - directory with static files (images, css, javascipt, fonts)
-  
-## Examples
-
-This is the directory with UML's of ADT and Data Structures and with working examples
 
 ## Structures
 
@@ -92,22 +88,29 @@ Python package with following modules:
 
 * <b>node.py</b> - module with implemented Node ADT
 
-## Geofiles
+### Geofiles
 
 Directory with geofiles from dataset (just a few of them)
 
-## Geocoder
+### Geocoder
 
 Directory with geocoder (name -> coordinates and vice-versa) implementation on Python
 
-## Mpl_3d
+### Mpl_3d
 
 Directory with modules for transformation and computation Landscape and Pathes in Python
 
-## Tiff_read
+### Tiff_read
 
 Directory with Python module for reading and transforming data to Lattice ADT
 
+### Examples
+
+This is the directory with UML's of ADT and Data Structures and with working examples
+
+### Video
+
+Videos with project presentations
 
 # Realization Details
 
