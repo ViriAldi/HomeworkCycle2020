@@ -1,0 +1,17 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url("../Katrine.ttf");
+}
+body{
+    background-image: url("../background.jpeg");
+    background-size: 100%;
+}
+div {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    padding-top: 0px;
+}
+button {
+    font-size: 30px;
+}

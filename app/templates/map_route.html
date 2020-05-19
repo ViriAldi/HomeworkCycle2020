@@ -1,136 +1,80 @@
-<html>
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <script src="static/plotly_min.js"></script>
-        <style>
-            body{
-                background-color: lightgray;
+{% extends "main_map.html" %}
+
+{% block script %}
+    <script>
+    let data_all = ({{ path_map }});
+    data = data_all[0];
+    path = data_all[1];
+
+    let data_x = data[0];
+    let data_y = data[1];
+    let data_z = data[2];
+
+    let path_x = path[0];
+    let path_y = path[1];
+    let path_z = path[2];
+
+    data = [{
+            x: data_x,
+            y: data_y,
+            z: data_z,
+            type: 'surface',
+            colorscale: ({{ colormap|tojson }}),
+            colorbar: {
+                x: 1
             }
-            @font-face {
-                font-family: myFirstFont;
-                src: url("static/Katrine.ttf");
+        },
+        {
+            x: path_x,
+            y: path_y,
+            z: path_z,
+            type: "scatter3d",
+            mode: "lines",
+            line: {
+                width: 10,
+                color: "black"
             }
-        </style>
-    </head>
-    <body>
-    <div class="wrapper" style="margin-top: -10; margin-left: 600; margin-bottom: -40; margin-right: 0">
-        <div id="chart"></div>
-        <script>
-        let data_all = ({{ path_map }})
-        data = data_all[0];
-        path = data_all[1];
+        }];
 
-        let data_x = data[0];
-        let data_y = data[1];
-        let data_z = data[2];
+    let axis = {
+        showgrid: false,
+        zeroline: false,
+        showline: false,
+        autotick: true,
+        ticks: '',
+        showticklabels: false,
+        title: {
+            text: "",
+            font: {size: 20, family: "myFirstFont", color: "black"}
+        }
+    };
 
-        let path_x = path[0];
-        let path_y = path[1];
-        let path_z = path[2];
-
-        data = [{
-                x: data_x,
-                y: data_y,
-                z: data_z,
-                type: 'surface',
-                colorscale: ({{ colormap|tojson }}),
-                colorbar: {
-                    x: 1
+    let layout = {
+        autosize: false,
+        width: 1322,
+        height: 843,
+        margin: {b: 0, t: 0, l: 0, r: 0,},
+        scene: {
+            camera: {
+                center: {
+                    z: -0.1
+                },
+                eye: {
+                    z: 0.7,
+                    x: 1.1,
+                    y: 1.1
                 }
             },
-            {
-                x: path_x,
-                y: path_y,
-                z: path_z,
-                type: "scatter3d",
-                mode: "lines",
-                line: {
-                    width: 10,
-                    color: "black"
-                }
-            }];
+            aspectmode: "data",
+            xaxis: axis,
+            yaxis: axis,
+            zaxis: axis,
+        }
+    };
 
-        let layout = {
-            autosize: false,
-            width: 1312,
-            height: 843,
-            margin: {
-                b: 0,
-                t: 0,
-                l: 0,
-                r: 0,
-            },
-            scene: {
-                camera: {
-                    center: {
-                        z: -0.1
-                    },
-                    eye: {
-                        z: 0.7,
-                        x: 1.1,
-                        y: 1.1
-                    }
-                },
-                aspectmode: "data",
-                zaxis: {
-                    showgrid: false,
-                    zeroline: false,
-                    showline: false,
-                    autotick: true,
-                    ticks: '',
-                    showticklabels: false,
-                    title: {
-                        text: ""
-                    }
-                },
-                xaxis: {
-                    showgrid: false,
-                    zeroline: false,
-                    showline: false,
-                    autotick: true,
-                    ticks: '',
-                    showticklabels: false,
-                    title: {
-                        text: "WEST",
-                        font: {
-                            size: 20,
-                            family: "myFirstFont",
-                            color: "black"
-                        }
-                    }
-                },
-                yaxis: {
-                    showgrid: false,
-                    zeroline: false,
-                    showline: false,
-                    autotick: true,
-                    ticks: '',
-                    showticklabels: false,
-                    title: {
-                        text: "NORTH",
-                        font: {
-                            size: 20,
-                            family: "myFirstFont",
-                            color: "black"
-                        }
-                    }
-                }
-            },
-            paper_bgcolor: "#b0ffb7",
-        };
+    Plotly.plot('chart', data, layout);
 
-        Plotly.plot('chart', data, layout);
-
-        let chart = document.getElementsByClassName("main-svg");
-        chart[0].style.backgroundImage = "url('static/background.jpeg')";
+    let chart = document.getElementsByClassName("main-svg");
+    chart[0].style.backgroundImage = "url('static/background.jpeg')";
     </script>
-    </div>
-    <div style="position: absolute; top: -5%; right: 40%">
-        <h1 align="center" style="font-size: 60px; font-family: myFirstFont; white-space: nowrap;">Landscape Map</h1>
-    </div>
-    <div style="position: absolute; right: 68%; top: 0%; left: 0%; bottom: 0%; background-image: url('static/wood.jpg')">
-        <h2 align="center" style="font-size: 50px; font-family: myFirstFont">Plot data</h2>
-        <a href="/" style="display:block; text-align: center; font-size: 40px; color: black; font-family: myFirstFont; text-decoration: none; margin-top: 90%"><b>BACK</b></a>
-    </div>
-    </body>
-</html>
+{% endblock %}

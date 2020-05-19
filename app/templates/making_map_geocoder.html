@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Geo 3D Mapper</title>
-    <style>
-        @font-face {
-          font-family: myFirstFont;
-          src: url("static/Katrine.ttf");
-        }
-        body{
-            background-image: url("static/background.jpeg");
-            background-size: 100%;
-        }
-        div {
-            display: flex;
-            flex-flow: column wrap;
-            align-items: center;
-            padding-top: 0px;
-        }
-        button {
-            font-size: 30px;
-        }
+{% extends "main.html" %}
 
-    </style>
-</head>
-<body>
+{% block body %}
 <h1 align="center" style="font-size: 80px; font-family: myFirstFont; margin-top: 40px">
     Welcome to the 3D GeoLandscaper
 </h1>
@@ -33,22 +9,13 @@
             <input name = "name" style="margin-top: 50px; width: 400px; height: 40px; font-size: 29px" placeholder="Type the location" required>
             <input name = "size" style="margin-top: 20px; width: 400px; height: 40px; font-size: 29px" placeholder="Type the size" required>
             <input name="color" list="colormaps" placeholder="Choose the colormap" autocomplete="off" required style="margin-top: 40px; font-size: 20px; width: 270px; height: 30px">
-            <datalist id="colormaps">
-                <option value="Earth">Earth</option>
-                <option value="Portland">Portland</option>
-                <option value="Rainbow">Rainbow</option>
-                <option value="Picnic">Picnic</option>
-                <option value="Viridis">Viridis</option>
-                <option value="Cividis">Cividis</option>
-                <option value="Blackbody">Blackbody</option>
-                <option value="Jet">Jet</option>
-                <option value="YlOrRd">YlOrRd</option>
-            </datalist>
+            {% block list %}
+                {{ super() }}
+            {% endblock %}
             <button style="margin-top: 30px; font-size: 30px; width: 160px; height: 50px;">GeoMake</button>
         </div>
     </form>
 <div>
     <a href="/choosing_map" style="margin-top: 100px; font-family: myFirstFont; text-decoration: none; color: black; font-size: 45px"><b>BACK</b></a>
 </div>
-</body>
-</html>
+{% endblock %}
