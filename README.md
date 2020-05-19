@@ -9,19 +9,16 @@ It's an open source project built on Python and JavaScript that provides constuc
 
 ## Installation and Usage
 
-### Source Code
+* Source Code
 
 ```bash
 $ git clone https://github.com/ViriAldi/HomeworkCycle2020
 ```
 
-### DataBase
+* DataBase
 
 [Elevation Dataset](https://www.eorc.jaxa.jp/ALOS/en/aw3d30/data/index.htm)
 
-### Web Site
-
-[PythonAnywhere](https://virialdi.pythonanywhere.com)
 
 ## Examples of work
 
