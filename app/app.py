@@ -57,7 +57,9 @@ def map_route():
 
 @app.route("/map", methods=["POST"])
 def geo_map():
+    name = ""
     if request.form.get("name", "") != "":
+        name = request.form.get("name")
         try:
             coord = locate(request.form.get("name"))
         except AttributeError:
@@ -81,7 +83,7 @@ def geo_map():
     except FileNotFoundError:
         return "No data"
 
-    return render_template("map.html", time=height_map, colormap=colormap)
+    return render_template("map.html", time=height_map, colormap=colormap, name=name)
 
 
 if __name__ == "__main__":
