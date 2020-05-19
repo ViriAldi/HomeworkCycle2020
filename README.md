@@ -7,6 +7,11 @@
 
 It's an open source project built on Python and JavaScript that provides constuction and interactive visualization of 3D Landscape Model of any region of Earth's sphere. It have a lot of functions and features, for example finding the shortest path between two points throught the hard landscape. You can use a vast majority of kernel functions to regulate height, coverage and angle penalties to make route fit all you needs (for example Alpinism or Roads modeling). This project uses very accurate elevation dataset, taken from the sattelite with step 1 arcsecond, respectfuly it is an accuracy of 30 meters in practice. Naturally, the size of entire dataset is too huge to be gitted here, so I'm going to leave a reference on the resource, where you can download data with free access.
 
+## Table of contents
+
+1. [ Installation. ](#inst)
+
+<a name="inst"></a>
 ## Installation and Usage
 
 * <b>Source Code</b>
