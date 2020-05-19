@@ -3,13 +3,17 @@
 
 ## Python project for constructing 3D Landscape real-life surfaces and seeking shortest routes between points
 
+<a name="what"></a>
 ### What is 3D Landscape GeoMapper?
 
 It's an open source project built on Python and JavaScript that provides constuction and interactive visualization of 3D Landscape Model of any region of Earth's sphere. It have a lot of functions and features, for example finding the shortest path between two points throught the hard landscape. You can use a vast majority of kernel functions to regulate height, coverage and angle penalties to make route fit all you needs (for example Alpinism or Roads modeling). This project uses very accurate elevation dataset, taken from the sattelite with step 1 arcsecond, respectfuly it is an accuracy of 30 meters in practice. Naturally, the size of entire dataset is too huge to be gitted here, so I'm going to leave a reference on the resource, where you can download data with free access.
 
 ## Table of contents
 
-1. [ Installation. ](#inst)
+* [ What is 3D Landscape GeoMapper? ](#what)
+* [ Installation and Usage ](#inst)
+* [ Examples of Work ](#ex)
+* [ Input and Output data ](#input)
 
 <a name="inst"></a>
 ## Installation and Usage
@@ -39,7 +43,7 @@ $ flask run
 ```
 $ pip/pip3/conda install flask, numpy, geopy, pillow
 ```
-
+<a name="ex"></a>
 ## Examples of work
 
 * ### Plotting the K2 mountain landscape (Karakoram, Pakistan)
@@ -66,7 +70,7 @@ $ pip/pip3/conda install flask, numpy, geopy, pillow
 
 ![ukraine](https://github.com/ViriAldi/HomeworkCycle2020/blob/master/examples/plot_examples/rakhiv-yaremche.png)
 
-
+<a name="input"></a>
 # Input and Output data
 
 The input data can be either geografical coordinates or name  of location (built-in geocoder will try to recognize the location and generate geografical coordinates for it), also you input size, quality and colormap. Program uses elevation dataset and then produces JavaScript interactive animation that is showed on the website, thats actual ouptut data.
@@ -93,29 +97,19 @@ Python package with following modules:
 
 * <b>node.py</b> - module with implemented Node ADT
 
-### Geofiles
+## Others
 
-Directory with geofiles from dataset (just a few of them)
+* <b>Geofiles</b> - Directory with geofiles from dataset (just a few of them)
 
-### Geocoder
+* <b>Geocoder</b> - Directory with geocoder (name -> coordinates and vice-versa) implementation on Python
 
-Directory with geocoder (name -> coordinates and vice-versa) implementation on Python
+* <b>Mpl_3d</b> - Directory with modules for transformation and computation Landscape and Pathes in Python
 
-### Mpl_3d
+* <b>Tiff_read</b> - Directory with Python module for reading and transforming data to Lattice ADT
 
-Directory with modules for transformation and computation Landscape and Pathes in Python
+* <b>Examples</b> - This is the directory with UML's of ADT and Data Structures and with working examples
 
-### Tiff_read
-
-Directory with Python module for reading and transforming data to Lattice ADT
-
-### Examples
-
-This is the directory with UML's of ADT and Data Structures and with working examples
-
-### Video
-
-Videos with project presentations
+* <b>Video</b> - Videos with project presentations
 
 # Realization Details
 
