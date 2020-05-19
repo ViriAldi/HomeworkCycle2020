@@ -3,7 +3,7 @@ from math import ceil
 
 
 def to_javascript(coordinates, size):
-    reader = GeoTiffReader(coordinates, k=ceil(size/8000))
+    reader = GeoTiffReader(coordinates, k=ceil(size/4000))
 
     lattice = reader.make_lattice(coordinates, size=size)
     x, y, z = lattice.x_2d.tolist(), lattice.y_2d.tolist(), lattice.z_2d.tolist()
