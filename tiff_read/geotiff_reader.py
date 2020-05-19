@@ -46,7 +46,6 @@ class GeoTiffReader:
 
         for filename in os.listdir("../geofiles"):
             if f"N{lat}E{lon}" in filename:
-                print(filename)
                 path = f"../geofiles/{filename}"
                 break
 
