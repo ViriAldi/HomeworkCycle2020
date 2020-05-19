@@ -14,6 +14,9 @@ It's an open source project built on Python and JavaScript that provides constuc
 * [ Installation and Usage ](#inst)
 * [ Examples of Work ](#ex)
 * [ Input and Output data ](#input)
+* [ Project Structure ](#structure)
+* [ Realization Details ](#re)
+* [ Credits ](#cre)
 
 
 ## Wiki Pages (Ukrainian Only)
@@ -89,6 +92,7 @@ $ pip/pip3/conda install flask, numpy, geopy, pillow
 
 The input data can be either geografical coordinates or name  of location (built-in geocoder will try to recognize the location and generate geografical coordinates for it), also you input size, quality and colormap. Program uses elevation dataset and then produces JavaScript interactive animation that is showed on the website, thats actual ouptut data.
 
+<a name="structure"></a>
 # Project structure
 
 ## App
@@ -125,6 +129,7 @@ Python package with following modules:
 
 * <b>Video</b> - Videos with project presentations
 
+<a name = "re"></a>
 # Realization Details
 
 ## Modules
@@ -216,3 +221,12 @@ function PlotPath(path){
     Plotly.plot('chart', data);
 }
 ```
+
+<a name = "cre"></a>
+## Credits
+
+Volodymyr Fedynyak aka ViriAldi
+
+> [Facebook ViriAldi](https://www.facebook.com/ViriAldi)
+> [Instagram ViriAldi](https://www.instagram.com/viri_aldi)
+> [LinkedIn ViriAldi](https://www.linkedin.com/in/volodymyr-fedynyak-1717b919a/)
