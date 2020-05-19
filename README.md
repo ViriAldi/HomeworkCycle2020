@@ -29,6 +29,12 @@ For running web aplication type this command in ./app:
 $ flask run
 ```
 
+* <b>Pre-requirments</b>
+
+```
+$ pip/pip3/conda install flask, numpy, geopy, pillow
+```
+
 ## Examples of work
 
 * ### Plotting the K2 mountain landscape (Karakoram, Pakistan)
