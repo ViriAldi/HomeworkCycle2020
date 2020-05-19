@@ -15,6 +15,20 @@ It's an open source project built on Python and JavaScript that provides constuc
 * [ Examples of Work ](#ex)
 * [ Input and Output data ](#input)
 
+
+## Wiki Pages (Ukrainian Only)
+
+* [Домашнє Завдання 0](https://github.com/ViriAldi/HomeworkCycle2020/wiki/%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%94-%D0%97%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F-0)
+
+* [Домашнє Завдання 1](https://github.com/ViriAldi/HomeworkCycle2020/wiki/%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%94-%D0%B7%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F-1)
+
+* [Домашнє Завдання 2](https://github.com/ViriAldi/HomeworkCycle2020/wiki/%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%94-%D0%97%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F-2)
+
+* [Домашнє Завдання 3](https://github.com/ViriAldi/HomeworkCycle2020/wiki/%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%94-%D0%97%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F-3)
+
+* [Домашнє Завдання 4](https://github.com/ViriAldi/HomeworkCycle2020/wiki/%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%94-%D0%97%D0%B0%D0%B2%D0%B4%D0%B0%D0%BD%D0%BD%D1%8F-4)
+
+
 <a name="inst"></a>
 ## Installation and Usage
 
