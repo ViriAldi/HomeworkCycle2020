@@ -17,7 +17,7 @@ $ git clone https://github.com/ViriAldi/HomeworkCycle2020
 
 ### Web Site
 
-[PythonAnywhere](virialdi.pythonanywhere.com)
+[PythonAnywhere](https://virialdi.pythonanywhere.com)
 
 ## Examples of work
 
