@@ -235,4 +235,4 @@ Volodymyr Fedynyak aka ViriAldi
 
 > [LinkedIn Volodymyr Fedynyak](https://www.linkedin.com/in/volodymyr-fedynyak-1717b919a/)
 
-> [Tweeter ViriAldi](https://twitter.com/aldi_viri)
+> [Twitter ViriAldi](https://twitter.com/aldi_viri)
