@@ -29,7 +29,7 @@ function PlotMap(data_, colorscale){
 
     let layout = {
         autosize: false,
-        width: 1322,
+        width: 1379,
         height: 843,
         margin: {b: 0, t: 0, l: 0, r: 0,},
         scene: {

@@ -27,6 +27,7 @@ def making_path(name):
 
 @app.route("/map_route", methods=["POST"])
 def map_route():
+    name1 = name2 = ""
     if request.form.get("name1", "") != "":
         name1 = request.form.get("name1")
         name2 = request.form.get("name2")
@@ -52,7 +53,13 @@ def map_route():
     except FileNotFoundError:
         return "No data"
 
-    return render_template("map_route.html", path_map=path_map, colormap=colormap)
+    coord = ((coord1[0] + coord1[0]) / 2, (coord1[1] + coord1[1]) / 2)
+
+    country, address = decode(coord)
+    address = " ".join("".join(str(address).split(",")[:2]).split()[:6])
+    size = 2 * int(max(0.75 * max(abs(coord2[0] - coord1[0]), abs(coord2[1] - coord1[1])) * 120, 5))
+
+    return render_template("map_route.html", path_map=path_map, colormap=colormap, name=f"{name1.capitalize()} - {name2.capitalize()}", lat=coord[0], lon=coord[1], country=country, address=address, size=size)
 
 
 @app.route("/map", methods=["POST"])
@@ -83,7 +90,10 @@ def geo_map():
     except FileNotFoundError:
         return "No data"
 
-    return render_template("map.html", time=height_map, colormap=colormap, name=name)
+    country, address = decode(coord)
+    address = " ".join("".join(str(address).split(",")[:2]).split()[:6])
+
+    return render_template("map.html", time=height_map, colormap=colormap, name=name.capitalize(), lat=coord[0], lon=coord[1], country=country, address=address, size=2*size)
 
 
 if __name__ == "__main__":

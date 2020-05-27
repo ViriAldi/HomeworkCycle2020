@@ -10,6 +10,8 @@ def locate(name):
 
 def decode(coords):
     geolocator = Nominatim(user_agent=__name__)
+    country = geolocator.reverse(coords, zoom=5)
     address = geolocator.reverse(coords)
 
-    return address
+    return country, address
+
