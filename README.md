@@ -231,8 +231,5 @@ Volodymyr Fedynyak aka ViriAldi
 
 > [Facebook Volodymyr Fedynyak](https://www.facebook.com/ViriAldi)
 
-> [Instagram ViriAldi](https://www.instagram.com/viri_aldi)
-
 > [LinkedIn Volodymyr Fedynyak](https://www.linkedin.com/in/volodymyr-fedynyak-1717b919a/)
 
-> [Twitter ViriAldi](https://twitter.com/aldi_viri)
